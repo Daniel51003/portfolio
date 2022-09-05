@@ -104,6 +104,10 @@ h1,h2,h3{
 #introduction-para{
     line-height: 1.5;
 }
+.profile .card a{
+    color: rgb(39, 39, 39);
+    font-size: 2rem;
+}
 .profile .card .fas,.profile .card h1{
     display: inline;
 }
@@ -179,6 +183,30 @@ h1,h2,h3{
         transform: translateX(0);
     }
 }
+
+@media(max-width:1130px) and (min-width: 767px){
+    .profile .grid{
+        grid-template-columns: 1fr 2fr;
+    }
+    .profile .grid img{
+        grid-column: 1/span 1;
+
+    }
+    .profile .grid .greetings{
+        grid-column: 2/span 1;
+    }
+    .profile .flex{
+        flex-direction: row;
+        overflow:visible ;
+    }
+    .profile .grid .flex{
+        grid-column: 1/span 2;
+    }
+}
+
+
+
+
 /* Tablets and under */
 @media(max-width:768px){
     .navbar .flex {
