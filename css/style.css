@@ -180,3 +180,40 @@ h1,h2,h3{
         transform: translateX(0);
     }
 }
+/* Tablets and under */
+@media(max-width:768px){
+    .grid, .profile .grid{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+    .profile .grid img{
+        justify-self: center;
+    }
+    .profile .greetings{
+        text-align: center;
+    }
+    .profile .card{
+        text-align: center;
+    }
+    .footer .footer-title{
+        text-align: center;
+    }
+    .footer .social{
+        
+        justify-content: space-between;
+    }
+}
+
+/* Mobile */
+@media(max-width:500px){
+    .navbar{
+        height:100px;
+    }
+    .navbar .flex{
+        flex-direction: column;
+    }
+    .navbar ul{
+        padding:10px;
+        background-color: rgba(0,0,0,0.1);
+    }
+}
