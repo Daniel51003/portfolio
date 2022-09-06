@@ -7,8 +7,9 @@
     --light-color: lightgray;
     --success-color: #5cb85c;
     --error-color: #d9534f;
+    --completed-color: lightgreen;
+    --in-Progress-color: rgb(247, 247, 109);
 }
-
 
 * {
     box-sizing: border-box;
@@ -113,8 +114,23 @@ h1,h2,h3{
 }
 .profile .card{
     width: 100%;
-    
 }
+/* Projects */
+.projects ul{
+    display: flex;
+}
+.projects .grid{
+    overflow:visible ;
+}
+.projects .flex{
+    justify-content: space-between;
+}
+
+.projects .grid a{
+    height: 100%;
+   
+}
+
 /* .profile::before,.profile::after{
     content:'';
     position: absolute;
