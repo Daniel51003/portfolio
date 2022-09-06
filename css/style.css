@@ -234,6 +234,9 @@ h1,h2,h3{
     .profile .grid .flex{
         grid-column: 1/span 2;
     }
+    .projects .grid{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 
@@ -284,6 +287,10 @@ h1,h2,h3{
     }
     .projects .flex{
         overflow: visible;
+    }
+    .projects p,.projects p .read_more_projects{
+        position: relative;
+        text-align: center;
     }
 }
 
