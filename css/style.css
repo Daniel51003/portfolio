@@ -115,6 +115,11 @@ h1,h2,h3{
 .profile .card{
     width: 100%;
 }
+
+
+
+
+
 /* Projects */
 .projects ul{
     display: flex;
@@ -130,7 +135,18 @@ h1,h2,h3{
     height: 100%;
    
 }
-
+.projects a .container{
+    padding: 0;
+    
+}
+.projects a .card{
+    height: 100%;
+    position: relative;
+}
+.read_more_projects{
+    position: absolute;
+    bottom: 0;
+}
 /* .profile::before,.profile::after{
     content:'';
     position: absolute;
@@ -266,6 +282,9 @@ h1,h2,h3{
     #introduction-para{
         font-size: 1.5rem;
     }
+    .projects .flex{
+        overflow: visible;
+    }
 }
 
 /* Mobile */
@@ -280,4 +299,11 @@ h1,h2,h3{
         padding:10px;
         background-color: rgba(0,0,0,0.1);
     }
+    .projects .flex{
+        flex-direction: column;
+    }
+    /* .projects ul{
+        padding:10px;
+        background-color: rgba(0,0,0,0.1);
+    } */
 }
