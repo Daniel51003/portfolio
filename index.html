@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/utilities.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Daniel's Website</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="container flex">
+        <h1 id="main-header">Daniel's Website</h1>
+        <nav id="main-navbar">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- Introduction -->
+    <section class="profile bg-light py-2">
+      <div class="container grid grid-3">
+        <img src="images/profile_suit_3.jpg" alt="" />
+        <div class="greetings">
+          <h2 class="lg">Hi, I'm Daniel!</h2>
+          <p id="introduction-para" class="md">
+            I recently graduated from San Jose State University! I am very
+            interested in Wildfire Weather, Data Analysis and coding in general.
+            I love to rock climb and also participate in a Portuguese marching
+            band. Nice to meet you!
+          </p>
+        </div>
+        <div class="container flex">
+          <div class="card">
+            <i class="fas fa-building-columns fa-2x"></i>
+            <!-- <h1 class="md">SJSU</h1> -->
+            <a href="https://www.sjsu.edu/" target="_blank">SJSU</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-graduation-cap fa-2x"></i>
+            <a href="https://www.sjsu.edu/meteorology/" target="_blank"
+              >B.S. Meteorology</a
+            >
+          </div>
+          <div class="card">
+            <i class="fas fa-calendar-days fa-2x"></i>
+            <h1 class="md">May, 2022</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+
+    <section class="projects py-2 bg-primary">
+      <div class="container flex">
+        <h2 class="lg">Projects</h2>
+        <ul>
+          <li><div class="card card-sm completed">Completed</div></li>
+          <li>
+            <div class="card card-sm in-Progress">In Progress</div>
+          </li>
+          <li><div id="planned-id" class="card card-sm">Planned</div></li>
+        </ul>
+      </div>
+
+      <div class="container grid grid-3">
+        <a id="first" href="#">
+          <div class="card in-Progress">
+            <div class="container">
+              <div class="flex">
+                <h2 class="bold">PGE Project</h2>
+                <h2>2022-Present</h2>
+              </div>
+            </div>
+            <p>
+              Led by Mike Voss, a group of SJSU students and alumni are working
+              on generating a website with a multitude of different weather data
+              accessable by the public.
+            </p>
+            <p class="read_more_projects">Click to read more!</p>
+          </div>
+        </a>
+        <a href="#"
+          ><div class="card completed">
+            <div class="container">
+              <div class="flex">
+                <h2 class="bold">Fuel Moisture</h2>
+                <h2>2021-2022</h2>
+              </div>
+              <p>
+                This was my senior thesis project under Dr. Adam Kochanski We
+                analyzed lots of model data with observations in order to best
+                isolate causes of error in the fuel moisture calculations which
+                are crucial for predicting fire spread.
+              </p>
+              <p class="read_more_projects">Click to read more!</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="card completed">
+            <div class="container">
+              <div class="flex">
+                <h2 class="bold">Green Energy</h2>
+                <h2>2019-2020</h2>
+              </div>
+              <p>
+                This project was led by Dr. Eugene Cordero. A study was
+                performed to see if students are more willing to pursue a career
+                in green transporation after being exposed to certain materials.
+                I was given the task of analyzing the survey results and
+                determining statistical significance.
+              </p>
+              <p class="read_more_projects">Click to read more!</p>
+            </div>
+          </div>
+        </a>
+        <a href="#"
+          ><div class="card planned">
+            <div class="container">
+              <div class="flex">
+                <h2 class="bold">Weather Site</h2>
+                <h2>Upcoming</h2>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer bg-dark py-3">
+      <div class="container grid grid-3">
+        <div class="footer-title">
+          <h1>Daniel's Website</h1>
+          <p>Copyright &copy; 2022</p>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="social">
+          <a href="https://github.com/Daniel51003" target="_blank"
+            ><i class="fab fa-github fa-2x"></i
+          ></a>
+          <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
