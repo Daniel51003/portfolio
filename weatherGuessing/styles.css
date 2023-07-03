@@ -1,16 +1,43 @@
+body{
+    background-color: cadetblue;
+    margin: 0px;
+}
 .overAllContainer{
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 500px;
 }
-.rightSideContainer,.buttonContainer{
+.rightSideContainer,.buttonContainer,.leftSideContainer{
     display: flex;
     flex-direction: column;
+    width: 50%;
+    align-items: center;
+    height: 100%;
+}
+.rightSideContainer{
+    background-color: antiquewhite;
+}
+.leftSideContainer{
+    background-color: aqua;
 }
 button{
     margin-top: 5px;
+    /* padding: 10px 25px ; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.1em;
+    width: 100px;
 }
 h1,h2{
     text-align: center;
+}
+.higherButton{
+    background-color: rgba(255, 71, 71, 0.609);
+}
+.lowerButton{
+    background-color: rgba(136, 136, 253, 0.663);
+}
+.guessButtons:hover{
+    transform:scale(.9);
 }
