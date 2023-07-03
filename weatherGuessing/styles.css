@@ -1,0 +1,16 @@
+.overAllContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px;
+}
+.rightSideContainer,.buttonContainer{
+    display: flex;
+    flex-direction: column;
+}
+button{
+    margin-top: 5px;
+}
+h1,h2{
+    text-align: center;
+}

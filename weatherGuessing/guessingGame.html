@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Guessing Game</title>
+</head>
+<body>
+    <h1>Guessing Game</h1>
+    <h2 id="currentScore"></h2>
+    <h2 id="highScore"></h2>
+    <div class="overAllContainer">
+        <div class="leftSideContainer">
+            <h1 id="leftSideTitle">Test</h1>
+            <h2 id="currentObs"></h2>
+            <img src="https://maps.avnwx.com/photos/airports/KSJC.png" alt="">
+        </div>
+        <div class="rightSideContainer">
+            <h1 id="rightSideTitle">Testing</h1>
+            <div class="buttonContainer">
+                <button class="higherButton">Higher</button>
+                <button class="lowerButton">Lower</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    const STATIONLIST=['KSJC','KDEN','KMCO','KFLG','KATL','KBOS','KCLE','KDAL','KEUG','KFNT','KGRB']
+    const STATIONLISTNAMES=['San Jose, CA','Denver, CO','Orlando, FL','Flagstaff, AZ','Atlanta, GA','Boston, MA','Cleveland, OH','Dallas, TX','Eugene, OR','Flint, MI','Green Bay, WI']
+    let stationListApiCall=[];
+    const APITOKEN='3e5ac904d2cb4b218ef0b7126825cd17'
+    let latestObservedTemps=[];
+    const buttonHigher=document.getElementsByClassName('higherButton')[0];
+    const buttonLower=document.getElementsByClassName('lowerButton')[0];
+    let temperature0;//Temperature of first button option
+    let temperature1;//Temperature of second button option
+    let booleanGuess;//Lets you know if your guess was right or wrong
+    let alreadySelectedList=[];
+    let currentScore=0;
+    let highScore=0;
+    // document.getElementById('leftSideContainer').style.backgroundImage="url('https://maps.avnwx.com/photos/airports/KSJC.png')"
+    // https://api.synopticdata.com/v2/stations/latest?&token=8c63fa9b220e4834b73115cddc44a1f1&units=temp|f&stid=KSJC,KDEN
+    // https://api.synopticdata.com/v2/stations/latest?&token=8c63fa9b220e4834b73115cddc44a1f1&units=temp|f&stid=KJSC,KDEN
+
+
+    // let url='https://api.synopticdata.com/v2/stations/latest?&token=8c63fa9b220e4834b73115cddc44a1f1&units=temp|f&stid=KSJC,KDEN'
+    let url='https://api.synopticdata.com/v2/stations/latest?&token=8c63fa9b220e4834b73115cddc44a1f1&units=temp|f&stid='
+    let i=0;
+    for (stationName of STATIONLIST){
+        if (i<=STATIONLIST.length-2){
+            url+=`${stationName},`
+        }else{
+            url+=`${stationName}`
+        }
+        i++;
+    }
+    console.log(url);
+    url='https://api.synopticdata.com/v2/stations/latest?&token=8c63fa9b220e4834b73115cddc44a1f1&units=temp|f&stid=KSJC,KDEN,KMCO,KFLG,KATL,KBOS,KCLE,KDAL,KEUG,KFNT,KGRB'
+    //url='https://api.synopticdata.com/v2/stations/latest?&token=8c63fa9b220e4834b73115cddc44a1f1&units=temp|f'
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    let leftSideNumber;
+    let rightSideNumber;
+    function generateRandomNumber(){
+        return Math.floor(Math.random() * 11);
+    }
+    function shortenNumberArray(){
+        if (alreadySelectedList.length==5){
+            alreadySelectedList.shift();
+        }
+
+    }
+    function checkIfNumberIsRepeated(){
+        let randomNumber=generateRandomNumber()
+        // if (alreadySelectedList.includes(randomNumber)){
+        //     console.log('repeated number');
+        //     console.log(randomNumber,'rand');
+        //     checkIfNumberIsRepeated()
+        // }else{
+        //     alreadySelectedList.push(randomNumber)
+        //     console.log(randomNumber,'rand1');
+        //     return randomNumber
+        // }
+        while(alreadySelectedList.includes(randomNumber)){
+            randomNumber=generateRandomNumber()
+            console.log(randomNumber);
+        }
+        alreadySelectedList.push(randomNumber)
+        return randomNumber
+    }
+    ///STACKOVERFLOW
+    ///https://stackoverflow.com/questions/12460378/how-to-get-json-from-url-in-javascript
+    function generateGuessingItem(){
+        document.getElementById('currentScore').innerText=`Current Score: ${currentScore}`
+        document.getElementById('highScore').innerText=`High Score: ${highScore}`
+        if (alreadySelectedList.length==0){
+            leftSideNumber=checkIfNumberIsRepeated()
+            rightSideNumber=checkIfNumberIsRepeated()
+            // console.log('in here');
+            console.log(alreadySelectedList);
+        }
+        else{
+            shortenNumberArray();
+            leftSideNumber=rightSideNumber
+            rightSideNumber=checkIfNumberIsRepeated()
+            console.log(alreadySelectedList);
+        }
+
+        console.log(leftSideNumber,rightSideNumber);
+        temperature0=latestObservedTemps[leftSideNumber];
+        temperature1=latestObservedTemps[rightSideNumber];
+        // console.log(leftSideNumber);
+        // console.log(rightSideNumber);
+        // console.log(stationListApiCall[leftSideNumber]);
+        // console.log(stationListApiCall[rightSideNumber]);
+
+        // console.log(STATIONLIST.indexOf(stationListApiCall[leftSideNumber]));
+        // console.log(STATIONLIST.indexOf(stationListApiCall[rightSideNumber]));
+        // console.log(stationListApiCall);
+        document.getElementById('leftSideTitle').innerText=STATIONLISTNAMES[STATIONLIST.indexOf(stationListApiCall[leftSideNumber])]
+        document.getElementById('rightSideTitle').innerText=STATIONLISTNAMES[STATIONLIST.indexOf(stationListApiCall[rightSideNumber])]
+        document.getElementById('currentObs').innerText=`Current Temperature: ${temperature0} F`
+        if(temperature0<temperature1){
+            booleanGuess=false
+
+        }else{
+            booleanGuess=true
+        }
+        
+    }
+    var getJSON = function(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+        var status = xhr.status;
+        if (status === 200) {
+            callback(null, xhr.response);
+        } else {
+            callback(status, xhr.response);
+        }
+        };
+        xhr.send();
+    };
+    getJSON(url,
+     function(err, data) {
+        console.log(data);
+        if (err !== null) {
+            alert('Something went wrong: ' + err);
+        } else {
+            console.log(data.STATION[0].OBSERVATIONS.air_temp_value_1.value);
+            for (i=0;i<STATIONLIST.length;i++){
+                console.log(i);
+                latestObservedTemps.push(data.STATION[i].OBSERVATIONS.air_temp_value_1.value)
+                stationListApiCall.push(data.STATION[i].STID)
+                console.log(latestObservedTemps);
+                console.log(stationListApiCall);
+            }
+
+        }
+        generateGuessingItem();
+    });
+    ///STACKOVERFLOW
+
+    buttonHigher.addEventListener("click", (e)=> {
+        if (temperature0<temperature1){
+            currentScore+=1
+            console.log('correct');
+        }else if(temperature0==temperature1){
+            console.log('correct');
+            currentScore+=1
+        }else{
+            if (highScore<currentScore){
+                highScore=currentScore
+            }
+            currentScore=0
+            console.log('wrong');
+        }
+        generateGuessingItem()
+    });
+    buttonLower.addEventListener("click", (e)=> {
+        if (temperature0>temperature1){
+            currentScore+=1
+            console.log(currentScore);
+            console.log('correct');
+        }else if(temperature0==temperature1){
+            currentScore+=1
+            console.log('correct');
+        }else{
+            if (highScore<currentScore){
+                highScore=currentScore
+            }
+            currentScore=0
+            console.log('wrong');
+        }
+        generateGuessingItem()
+    });
+    // function checkIfDataIsLoaded(){
+    //     if(latestObservedTemps.length==STATIONLIST.length){
+    //         console.log('loaded');
+    //         return
+    //     }else{
+    //         console.log('not equal');
+    //         checkIfDataIsLoaded()
+    //     }
+    // }
+    // while(latestObservedTemps.length!=STATIONLIST.length){
+    //     console.log(latestObservedTemps.length);
+    //     // sleep(10)
+    // }
+    
+    // button0.addEventListener("click", (e)=> {
+    //     if(booleanGuess){
+    //         alert('congrats')
+    //     }
+    // });
+    // button1.addEventListener("click", (e)=> {
+    //     console.log('Denver');
+    //     if(!booleanGuess){
+    //         alert('congrats')
+    //     }else{
+    //         alert('got it wrong')
+    //     }
+    // });
+
+</script>
+</html>
